@@ -1,4 +1,4 @@
-# 1) - create a vpc
+#step 1) - create a vpc
 
 resource "aws_vpc" "myvpc" {
   cidr_block = "10.0.0.0/16"
@@ -8,27 +8,27 @@ resource "aws_vpc" "myvpc" {
 
 }
 
-# 2) - create a public subnet
+#step 2) - create a public subnet
 
 resource "aws_subnet" "PublicSubnet" {
   vpc_id = aws_vpc.myvpc.id
   cidr_block = "10.0.1.0/24"
 }
 
-# 3) - create a private subnet
+#step 3) - create a private subnet
 
 resource "aws_subnet" "PrivateSubnet" {
   vpc_id = aws_vpc.myvpc.id
   cidr_block = "10.0.2.0/24"
 }
 
-# 4) -  create internet gatway
+#step 4) -  create internet gatway
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.myvpc.id
 }
 
-# 5)- create routetable for publicsubnet
+#step 5)- create routetable for publicsubnet
 
 resource "aws_route_table" "publicRT" {
   vpc_id = aws_vpc.myvpc.id
@@ -39,7 +39,7 @@ resource "aws_route_table" "publicRT" {
 
 }
 
-# 6)- routetable asociation public subnet
+#step 6)- routetable asociation public subnet
 
 resource "aws_route_table_association" "publicRTassociation" {
   subnet_id = aws_subnet.PublicSubnet.id
